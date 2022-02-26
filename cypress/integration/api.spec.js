@@ -7,3 +7,17 @@ describe('API testing', () => {
 
   })  
 })
+
+describe('Get API user requsts', () => {
+  it('Get Users', () => {
+    cy.request({
+      method: 'GET',
+      url: 'https://gorest.co.in/public/v2/users',
+      headers:{
+        'authorization':'Bearer YOUR_ACCESS_TOKEN'
+      }
+    })
+    
+  })
+  
+})
