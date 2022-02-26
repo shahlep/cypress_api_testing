@@ -1,0 +1,27 @@
+{
+  "name": "cypress_api_testing",
+  "version": "1.0.0",
+  "description": "API automation with Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shahlep/cypress_api_testing.git"
+  },
+  "keywords": [
+    "API",
+    "Automation",
+    "Cypress"
+  ],
+  "author": "Shah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shahlep/cypress_api_testing/issues"
+  },
+  "homepage": "https://github.com/shahlep/cypress_api_testing#readme",
+  "dependencies": {
+    "cypress": "^9.5.0"
+  }
+}
