@@ -16,6 +16,12 @@ describe('API POST Request', () => {
                 "status": "active"
             }
 
+      }).then(res=>{
+          expect(res.status).to.eq(201)
+          expect(res.body.data).has.property('name','test user1')
+          expect(res.body.data).has.property('email','test.user1@haha.com')
+          expect(res.body.data).has.property('gender','male')
+          expect(res.body.data).has.property('status','active')
       })
-  });  
+  })  
 })
