@@ -21,7 +21,7 @@ describe('Get API user requsts', () => {
       }
     }).then((res)=>{
       expect(res.status).to.eq(200)
-      //expect(res.body.meta.pagination.limit).to.eq(20)
+      
     })
     
   })
