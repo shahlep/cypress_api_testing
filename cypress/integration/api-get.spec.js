@@ -3,6 +3,15 @@
 
 describe('Get API user requsts', () => {
   let accessToken = ''
+  
+  //create random text - https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+  let randomText = ""
+  let testEmail = ""
+  var pattern = "abcdefghijklmnopqrstuvwxyz"
+  for (var i = 0; i < 10; i++)
+  randomText+=pattern.charAt(Math.floor(Math.random() * pattern.length));
+  testEmail = randomText + 'haha.com'
+  
   it('Get Users', () => {
     cy.request({
       method: 'GET',
