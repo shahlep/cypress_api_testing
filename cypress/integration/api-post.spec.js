@@ -1,5 +1,7 @@
 /// <reference types="Cypress" />
 
+const userdata = require('../fixtures/users.json')
+
 describe('API POST Request', () => {
     let accessToken =''
   it('API post request with json payload', () => {
@@ -10,18 +12,18 @@ describe('API POST Request', () => {
               'authorization':'Bearer '+ accessToken
           },
           body:{
-                "name": "test user10",
-                "email": "test.user11@haha.com",
-                "gender": "male",
-                "status": "active"
+                "name": userdata.name,
+                "email": userdata.email,
+                "gender": userdata.gender,
+                "status": userdata.status
             }
 
       }).then(res=>{
           expect(res.status).to.eq(201)
-          expect(res.body).has.property('name','test user10')
-          expect(res.body).has.property('email','test.user11@haha.com')
-          expect(res.body).has.property('gender','male')
-          expect(res.body).has.property('status','active')
+          expect(res.body).has.property('name',userdata.name)
+          expect(res.body).has.property('email',userdata.email)
+          expect(res.body).has.property('gender',userdata.gender)
+          expect(res.body).has.property('status',userdata.status)
       })
   })  
 })
