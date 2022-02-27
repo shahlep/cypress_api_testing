@@ -10,18 +10,18 @@ describe('API POST Request', () => {
               'authorization':'Bearer '+ accessToken
           },
           body:{
-                "name": "test user1",
-                "email": "test.user1@haha.com",
+                "name": "test user10",
+                "email": "test.user11@haha.com",
                 "gender": "male",
                 "status": "active"
             }
 
       }).then(res=>{
           expect(res.status).to.eq(201)
-          expect(res.body.data).has.property('name','test user1')
-          expect(res.body.data).has.property('email','test.user1@haha.com')
-          expect(res.body.data).has.property('gender','male')
-          expect(res.body.data).has.property('status','active')
+          expect(res.body).has.property('name','test user10')
+          expect(res.body).has.property('email','test.user11@haha.com')
+          expect(res.body).has.property('gender','male')
+          expect(res.body).has.property('status','active')
       })
   })  
 })
