@@ -9,7 +9,7 @@ describe('API POST GET chain requset,response assertions', () => {
     var pattern = "abcdefghijklmnopqrstuvwxyz"
     for (var i = 0; i < 10; i++)
     randomText+=pattern.charAt(Math.floor(Math.random() * pattern.length));
-    testEmail = randomText + 'haha.com'
+    testEmail = randomText + '@haha.com'
   
   it('POST GET Chaining fun', () => {
     cy.request({
@@ -27,13 +27,27 @@ describe('API POST GET chain requset,response assertions', () => {
 
     }).then(res=>{
         expect(res.status).to.eq(201)
-        expect(res.body.data).has.property('name','test user')
-        expect(res.body.data).has.property('email',testEmail)
-        expect(res.body.data).has.property('gender','male')
-        expect(res.body.data).has.property('status','active')
+        expect(res.body).has.property('name','test user')
+        expect(res.body).has.property('email',testEmail)
+        expect(res.body).has.property('gender','male')
+        expect(res.body).has.property('status','active')
   }).then((res)=>{
         const userId = res.body.id 
         console.log("User ID is : "+userId)
+
+        cy.request({
+            method: 'GET',
+            url: 'https://gorest.co.in/public/v2/users/'+userId,
+            headers:{
+                authorization: 'Bearer '+ accessToken
+            }
+        }).then((res)=>{
+            expect(res.status).to.eq(200)
+            expect(res.body).has.property('name','test user')
+            expect(res.body).has.property('email',testEmail)
+            expect(res.body).has.property('gender','male')
+            expect(res.body).has.property('status','active')
+        })
   })
 })
 })
