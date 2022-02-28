@@ -19,7 +19,7 @@ describe('API POST DELETE chain requset,response assertions', () => {
             'authorization':'Bearer '+ accessToken
         },
         body:{
-              "name": "test user41",
+              "name": "test user42",
               "email": testEmail,
               "gender": "male",
               "status": "active"
@@ -27,13 +27,25 @@ describe('API POST DELETE chain requset,response assertions', () => {
 
     }).then(res=>{
         expect(res.status).to.eq(201)
-        expect(res.body).has.property('name','test user41')
+        expect(res.body).has.property('name','test user42')
         expect(res.body).has.property('email',testEmail)
         expect(res.body).has.property('gender','male')
         expect(res.body).has.property('status','active')
   }).then((res)=>{
         const userId = res.body.id 
         console.log("User ID is : "+userId)
+        //before delete
+        cy.request({
+            method:'GET',
+            url: 'https://gorest.co.in/public/v2/users/'+userId,
+            headers:{
+                authorization: 'Bearer '+ accessToken
+            }
+            }).then((res)=>{
+                //console.log(res.status)
+                expect(res.status).to.eq(200)
+                //expect(res.body).to.have.property('message','Resource not found')
+            })
 
         cy.request({
             method: 'DELETE',
@@ -44,6 +56,8 @@ describe('API POST DELETE chain requset,response assertions', () => {
         }).then((res)=>{
             expect(res.status).to.eq(204)
         })
+        
+        
   })
 })
 })
