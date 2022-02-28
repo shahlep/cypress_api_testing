@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('API POST GET chain requset,response assertions', () => {
+describe('API POST PUT chain requset,response assertions', () => {
     let accessToken = ''
   
   //create random text - https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
@@ -11,7 +11,7 @@ describe('API POST GET chain requset,response assertions', () => {
     randomText+=pattern.charAt(Math.floor(Math.random() * pattern.length));
     testEmail = randomText + '@haha.com'
   
-  it.skip('POST GET Chaining fun', () => {
+  it('POST PUT Chaining fun', () => {
     cy.request({
         method: 'POST',
         url: 'https://gorest.co.in/public/v2/users',
@@ -19,7 +19,7 @@ describe('API POST GET chain requset,response assertions', () => {
             'authorization':'Bearer '+ accessToken
         },
         body:{
-              "name": "test user30",
+              "name": "test user40",
               "email": testEmail,
               "gender": "male",
               "status": "active"
@@ -27,7 +27,7 @@ describe('API POST GET chain requset,response assertions', () => {
 
     }).then(res=>{
         expect(res.status).to.eq(201)
-        expect(res.body).has.property('name','test user30')
+        expect(res.body).has.property('name','test user40')
         expect(res.body).has.property('email',testEmail)
         expect(res.body).has.property('gender','male')
         expect(res.body).has.property('status','active')
@@ -40,9 +40,9 @@ describe('API POST GET chain requset,response assertions', () => {
             url: 'https://gorest.co.in/public/v2/users/'+userId,
             headers:{
                 authorization: 'Bearer '+ accessToken
-            }
+            },
             body:{
-                "name": "test user40",
+                "name": "test user50",
                 //"email": testEmail,
                 //"gender": "male",
                 "status": "inactive"
@@ -50,7 +50,7 @@ describe('API POST GET chain requset,response assertions', () => {
 
         }).then((res)=>{
             expect(res.status).to.eq(200)
-            expect(res.body).has.property('name','test user40')
+            expect(res.body).has.property('name','test user50')
             expect(res.body).has.property('email',testEmail)
             expect(res.body).has.property('gender','male')
             expect(res.body).has.property('status','inactive')
