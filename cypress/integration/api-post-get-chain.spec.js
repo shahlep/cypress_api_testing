@@ -1,8 +1,5 @@
 /// <reference types="Cypress" />
 
-const { method } = require("cypress/types/bluebird")
-const { url, powerCapacity } = require("wd/lib/commands")
-
 describe('API POST GET chain requset,response assertions', () => {
     let accessToken = ''
   
@@ -14,7 +11,7 @@ describe('API POST GET chain requset,response assertions', () => {
     randomText+=pattern.charAt(Math.floor(Math.random() * pattern.length));
     testEmail = randomText + '@haha.com'
   
-  it('POST GET Chaining fun', () => {
+  it.skip('POST GET Chaining fun', () => {
     cy.request({
         method: 'POST',
         url: 'https://gorest.co.in/public/v2/users',
@@ -53,25 +50,6 @@ describe('API POST GET chain requset,response assertions', () => {
         })
   })
 })
-    // Request Chaining (JSON to another)
-    it.only('Weather information for cities', () => {
-        
-        cy.request({
-            method:'GET',
-            url:'',
-            }).then((res)=>{
-                expect(res.status).to.be(200)
-                const city=res.body[0].title
-                return city
-            }).then((city)=>{
-                cy.request({
-                    method:'GET',
-                    url:''+city,
-                    }).then((res)=>{
-
-                    })
-                })
-            })
 })
         
 
