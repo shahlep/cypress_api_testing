@@ -1,5 +1,8 @@
 /// <reference types="Cypress" />
 
+const { method } = require("cypress/types/bluebird")
+const { url } = require("wd/lib/commands")
+
 describe('API POST GET chain requset,response assertions', () => {
     let accessToken = ''
   
@@ -50,4 +53,18 @@ describe('API POST GET chain requset,response assertions', () => {
         })
   })
 })
+    // Request Chaining (JSON to another)
+    it('Weather information for cities', () => {
+        
+        cy.request({
+            method:'GET',
+            url:'',
+            headers:{
+                authorization: 'Bearer '+accessToken
+            }.then((res)=>{
+                expect(res.status).to.be(200)
+            })
+        })
+        
+    })
 })
