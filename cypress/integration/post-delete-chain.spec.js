@@ -19,7 +19,7 @@ describe('API POST DELETE chain requset,response assertions', () => {
             'authorization':'Bearer '+ accessToken
         },
         body:{
-              "name": "test user40",
+              "name": "test user41",
               "email": testEmail,
               "gender": "male",
               "status": "active"
@@ -27,7 +27,7 @@ describe('API POST DELETE chain requset,response assertions', () => {
 
     }).then(res=>{
         expect(res.status).to.eq(201)
-        expect(res.body).has.property('name','test user40')
+        expect(res.body).has.property('name','test user41')
         expect(res.body).has.property('email',testEmail)
         expect(res.body).has.property('gender','male')
         expect(res.body).has.property('status','active')
